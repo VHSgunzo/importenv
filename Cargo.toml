@@ -1,0 +1,14 @@
+[package]
+name = "importenv"
+version = "0.0.1"
+readme = "README.md"
+license-file = "LICENSE"
+repository = "https://github.com/VHSgunzo/importenv"
+description = "Launching an executable file with environment variables from a specific process id"
+
+[profile.release]
+strip = "symbols"
+
+[dependencies]
+chrono = "*"
+nix = "*"
