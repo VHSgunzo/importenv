@@ -20,12 +20,11 @@ fn main() {
         exit(1);
     };
     let pid = exec_args.remove(1);
-    exec_args.drain(0..1);
+    exec_args.remove(0);
     let exec_prog = CString::new(exec_args[0].clone()).unwrap();
     let exec_prog = exec_prog.as_c_str();
     let exec_args: Vec<_> = exec_args.iter()
         .map(|s| CString::new(s.as_bytes()).unwrap()).collect();
-
     let environ = format!("/proc/{}/environ", pid);
     let environ_file_path = Path::new(&environ);
     let mut environ_file = OpenOptions::new()
@@ -34,7 +33,7 @@ fn main() {
         .create(false)
         .open(environ_file_path)
         .unwrap_or_else(|err| {
-            error_msg(&format!("{}: \"{}\"", &err.to_string(), environ));
+            error_msg(&format!("{}: \"{}\"", err.to_string(), environ));
             exit(1);
     });
     let mut env_buf = Vec::new();
@@ -46,7 +45,7 @@ fn main() {
     exec_env.pop();
     let exec_env: Vec<&CStr> = exec_env.iter().map(|c| c.as_c_str()).collect();
     if let Err(err) = execvpe(exec_prog, &exec_args, &exec_env) {
-        error_msg(&format!("{}: {:?}", &err.to_string(), exec_prog));
+        error_msg(&format!("{}: {:?}", err.to_string(), exec_prog));
         exit(1);
     };
 }
