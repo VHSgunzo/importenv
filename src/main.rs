@@ -1,9 +1,14 @@
 extern crate nix;
 extern crate chrono;
+use std::env;
 use chrono::Local;
+use std::io::Read;
+use std::path::Path;
+use std::process::exit;
 use std::str::from_utf8;
 use nix::unistd::execvpe;
-use std::{process::exit, env, fs::{OpenOptions}, path::Path, io::Read, ffi::{CString, CStr}};
+use std::fs::OpenOptions;
+use std::ffi::{CString, CStr};
 
 static RED: &str = "\x1b[91m";
 static RESETCOLOR: &str = "\x1b[0m";
