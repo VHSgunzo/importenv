@@ -2,6 +2,7 @@ extern crate nix;
 extern crate chrono;
 use std::env;
 use chrono::Local;
+use nix::NixPath;
 use std::io::Read;
 use std::path::Path;
 use std::ffi::CString;
@@ -45,11 +46,9 @@ fn main() {
     environ_file.read_to_end(&mut environ_file_data).unwrap();
     let mut exec_env = Vec::new();
     for var in environ_file_data.split(|b| *b == 0) {
-        let var_str = from_utf8(var).unwrap();
-        if ! var_str.is_empty() {
-            exec_env.push(CString::new(var_str).unwrap());
-        };
+        exec_env.push(CString::new(from_utf8(var).unwrap()).unwrap());
     };
+    if exec_env.last().unwrap().is_empty() { exec_env.pop(); };
     if let Err(err) = execvpe(exec_prog, &exec_args, &exec_env) {
         error_msg(&format!("{}: {:?}", err.to_string(), exec_prog));
         exit(1);

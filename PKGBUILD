@@ -1,6 +1,6 @@
 # Maintainer: VHSgunzo <vhsgunzo.github.io>
 pkgname='importenv'
-pkgver='0.0.4'
+pkgver='0.0.5'
 pkgrel='1'
 pkgdesc='Launching an executable file with environment variables from a specific process id'
 arch=("x86_64")
