@@ -36,8 +36,7 @@ jobs:
       - name: Build archlinux package
         uses: countstarlight/arch-makepkg-action@master
         with:
-          packages: pacman-contrib
-          scripts: "cp target/x86_64-unknown-linux-musl/release/importenv* . && updpkgsums && makepkg"
+          scripts: "cp target/x86_64-unknown-linux-musl/release/importenv* . && makepkg"
 
       - name: Release
         uses: softprops/action-gh-release@v1
