@@ -1,8 +1,8 @@
+#![feature(cstr_is_empty)]
 extern crate nix;
 extern crate chrono;
 use std::env;
 use chrono::Local;
-use nix::NixPath;
 use std::io::Read;
 use std::path::Path;
 use std::ffi::CString;

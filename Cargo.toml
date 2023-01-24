@@ -1,6 +1,6 @@
 [package]
 name = "importenv"
-version = "0.0.5"
+version = "0.0.6"
 readme = "README.md"
 license-file = "LICENSE"
 repository = "https://github.com/VHSgunzo/importenv"
@@ -8,6 +8,10 @@ description = "Launching an executable file with environment variables from a sp
 
 [profile.release]
 strip = "symbols"
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
 
 [dependencies]
 chrono = "*"
