@@ -7,11 +7,11 @@ repository = "https://github.com/VHSgunzo/importenv"
 description = "Launching an executable file with environment variables from a specific process id"
 
 [profile.release]
-strip = "symbols"
-opt-level = "z"
 lto = true
-codegen-units = 1
 panic = "abort"
+opt-level = "z"
+strip = "symbols"
+codegen-units = 1
 
 [dependencies]
 chrono = "*"
