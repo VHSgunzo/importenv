@@ -99,7 +99,7 @@ ALPINE_DEPS="
   make mariadb-static mesa mesa-dev mesa-gbm meson mlocate mold moreutils musl musl-dev musl-fts musl-obstack-dev musl-utils \
   nano nasm ncurses ncurses-static nettle-static nghttp2-static ninja-build \
   openssl openssl-dev openssl-libs-static \
-  patchelf pcre2 perl perl-xml-parser pkgconf pkgconfig popt-dev popt-static procps protobuf protobuf-c protobuf-c-compiler protobuf-dev python3 \
+  patchelf pcre2 perl perl-xml-parser pkgconf pkgconfig popt-dev popt-static procps protobuf protobuf-c protobuf-c-compiler protobuf-dev python3 python3-dev py3-distro py3-docutils py3-elftools py3-netifaces py3-pip pipx\
   readline readline-dev readline-static rsync \
   tar texinfo txt2man tzdata \
   unzip upx util-linux util-linux-dev util-linux-static \
@@ -108,7 +108,7 @@ ALPINE_DEPS="
   yaml yaml-dev yaml-static \
   zig zlib zlib-dev zlib-static zstd zstd-static"
 #https://wiki.alpinelinux.org/wiki/Alpine_Linux_in_a_chroot  
-curl -qfsSL "https://gitlab.alpinelinux.org/api/v4/projects/5/packages/generic//"$(curl -qfsSL "https://gitlab.alpinelinux.org/api/v4/projects/5/repository/tags" | jq -r '.[0].name' | tr -d '[:space:]')"/aarch64/apk.static" -o "./apk.static"
+curl -qfsSL "https://gitlab.alpinelinux.org/api/v4/projects/5/packages/generic//"$(curl -qfsSL "https://gitlab.alpinelinux.org/api/v4/projects/5/repository/tags" | jq -r '.[0].name' | tr -d '[:space:]')"/$(uname -m)/apk.static" -o "./apk.static"
 chmod +x "./apk.static"
 sudo "./apk.static" -X "https://dl-cdn.alpinelinux.org/alpine/edge/main" -U --allow-untrusted -p "${ALPINE_CHROOT}" --initdb add "alpine-base"
 sudo mount -o bind "/dev" "${ALPINE_CHROOT}/dev"
@@ -147,7 +147,7 @@ sudo chroot "${ALPINE_CHROOT}" bash -c '
   rustup target add "$RUST_TARGET"
   export RUSTFLAGS="-C panic=abort -C target-feature=+crt-static -C default-linker-libraries=yes -C link-self-contained=yes -C prefer-dynamic=no -C embed-bitcode=yes -C lto=yes -C opt-level=3 -C debuginfo=none -C strip=symbols -C linker=clang -C link-arg=-fuse-ld=$(which mold) -C link-arg=-Wl,--Bstatic -C link-arg=-Wl,--static -C link-arg=-Wl,-S -C link-arg=-Wl,--build-id=none"
  #Build
-  git clone --filter "blob:none" --quiet "https://github.com/VHSgunzo/importenv" && cd "./importenv"
+  git clone --filter "blob:none" --quiet "https://github.com/Azathothas/importenv" && cd "./importenv"
   echo -e "\n[+] Target: $RUST_TARGET\n"
   echo -e "\n[+] Flags: $RUSTFLAGS\n"
   sed "/^\[profile\.release\]/,/^$/d" -i "./Cargo.toml" ; echo -e "\n[profile.release]\nstrip = true\nopt-level = 3\nlto = true" >> "./Cargo.toml"
