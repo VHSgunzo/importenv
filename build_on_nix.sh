@@ -147,7 +147,7 @@ sudo chroot "${ALPINE_CHROOT}" bash -c '
   rustup target add "$RUST_TARGET"
   export RUSTFLAGS="-C panic=abort -C target-feature=+crt-static -C default-linker-libraries=yes -C link-self-contained=yes -C prefer-dynamic=no -C embed-bitcode=yes -C lto=yes -C opt-level=3 -C debuginfo=none -C strip=symbols -C linker=clang -C link-arg=-fuse-ld=$(which mold) -C link-arg=-Wl,--Bstatic -C link-arg=-Wl,--static -C link-arg=-Wl,-S -C link-arg=-Wl,--build-id=none"
  #Build
-  git clone --filter "blob:none" --quiet "https://github.com/Azathothas/importenv" && cd "./importenv"
+  git clone --filter "blob:none" --quiet "https://github.com/VHSgunzo/importenv" && cd "./importenv"
   git tag --sort="-v:refname" | head -n 1 > "/build-bins/VERSION.txt"
   echo -e "\n[+] Target: $RUST_TARGET\n"
   echo -e "\n[+] Flags: $RUSTFLAGS\n"
