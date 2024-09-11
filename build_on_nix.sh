@@ -145,7 +145,7 @@ sudo chroot "${ALPINE_CHROOT}" bash -c '
   rustup component add rust-src --toolchain nightly 2>/dev/null
   export RUST_TARGET="$(uname -m)-unknown-linux-musl"
   rustup target add "$RUST_TARGET"
-  export RUSTFLAGS="-C target-feature=+crt-static -C default-linker-libraries=yes -C link-self-contained=yes -C prefer-dynamic=no -C embed-bitcode=yes -C lto=yes -C opt-level=3 -C debuginfo=none -C strip=symbols -C linker=clang -C link-arg=-fuse-ld=$(which mold) -C link-arg=-Wl,--Bstatic -C link-arg=-Wl,--static -C link-arg=-Wl,-S -C link-arg=-Wl,--build-id=none"
+  export RUSTFLAGS="-C panic=abort -C target-feature=+crt-static -C default-linker-libraries=yes -C link-self-contained=yes -C prefer-dynamic=no -C embed-bitcode=yes -C lto=yes -C opt-level=3 -C debuginfo=none -C strip=symbols -C linker=clang -C link-arg=-fuse-ld=$(which mold) -C link-arg=-Wl,--Bstatic -C link-arg=-Wl,--static -C link-arg=-Wl,-S -C link-arg=-Wl,--build-id=none"
  #Build
   git clone --filter "blob:none" --quiet "https://github.com/VHSgunzo/importenv" && cd "./importenv"
   echo -e "\n[+] Target: $RUST_TARGET\n"
