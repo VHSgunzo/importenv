@@ -99,7 +99,7 @@ ALPINE_DEPS="
   make mariadb-static mesa mesa-dev mesa-gbm meson mlocate mold moreutils musl musl-dev musl-fts musl-obstack-dev musl-utils \
   nano nasm ncurses ncurses-static nettle-static nghttp2-static ninja-build \
   openssl openssl-dev openssl-libs-static \
-  patchelf pcre2 perl perl-xml-parser pkgconf pkgconfig popt-dev popt-static procps protobuf protobuf-c protobuf-c-compiler protobuf-dev python3 python3-dev py3-distro py3-docutils py3-elftools py3-netifaces py3-pip pipx\
+  patchelf pcre2 perl perl-xml-parser pkgconf pkgconfig popt-dev popt-static procps protobuf protobuf-c protobuf-c-compiler protobuf-dev python3 python3-dev py3-distro py3-docutils py3-elftools py3-netifaces py3-pip pipx \
   readline readline-dev readline-static rsync \
   tar texinfo txt2man tzdata \
   unzip upx util-linux util-linux-dev util-linux-static \
