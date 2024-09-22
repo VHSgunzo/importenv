@@ -1,11 +1,7 @@
 name: CI
 
 on:
-  push:
-    branches:
-    - action
-    tags:
-    - '*'
+  workflow_dispatch:
 
 jobs:
   build_and_release:
