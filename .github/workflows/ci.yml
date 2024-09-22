@@ -35,7 +35,7 @@ jobs:
           scripts: "cp target/x86_64-unknown-linux-musl/release/{importenv,importenv-upx} . && makepkg"
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: importenv*
