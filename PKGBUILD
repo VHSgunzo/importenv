@@ -9,7 +9,7 @@ url="https://github.com/VHSgunzo/${binname}"
 provides=("${pkgname}" "${binname}")
 conflicts=("${pkgname}" "${binname}" "${binname}-git")
 source=(
-    "${binname}::${url}/releases/download/v${pkgver}/${binname}-${CARCH}"
+    "${binname}-${CARCH}::${url}/releases/download/v${pkgver}/${binname}-${CARCH}"
     "LICENSE::https://raw.githubusercontent.com/VHSgunzo/${binname}/refs/heads/main/LICENSE"
 )
 sha256sums=('SKIP' 'SKIP')
