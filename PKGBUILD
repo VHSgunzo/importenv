@@ -15,6 +15,6 @@ source=(
 sha256sums=('SKIP' 'SKIP')
 
 package() {
-    install -Dm755 "${pkgname}-${CARCH}" "$pkgdir/usr/bin/${binname}"
+    install -Dm755 "${binname}-${CARCH}" "$pkgdir/usr/bin/${binname}"
     install -Dm644 LICENSE "$pkgdir/usr/share/licenses/${binname}/LICENSE"
 }

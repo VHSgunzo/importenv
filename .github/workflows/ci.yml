@@ -40,10 +40,10 @@ jobs:
           echo upx;
           ls importenv-*|xargs -I {} upx -9 --best {} -o {}-upx;
 
-      - name: Build archlinux package
-        uses: countstarlight/arch-makepkg-action@master
-        with:
-          scripts: "makepkg -fsCc --noconfirm"
+      # - name: Build archlinux package
+      #   uses: countstarlight/arch-makepkg-action@master
+      #   with:
+      #     scripts: "makepkg -fsCc --noconfirm"
 
       - name: Release
         uses: softprops/action-gh-release@v2
