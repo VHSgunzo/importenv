@@ -32,7 +32,7 @@ jobs:
           cross build --release --target aarch64-unknown-linux-musl;
           mv target/aarch64-unknown-linux-musl/release/importenv importenv-aarch64;
           echo strip;
-          strip -s -R .comment -R .gnu.version --strip-unneeded importenv-* ;
+          strip -s -R .comment -R .gnu.version --strip-unneeded importenv-x86_64 ;
           echo upx;
           ls importenv-*|xargs -I {} upx -9 --best {} -o {}-upx;
 
