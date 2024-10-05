@@ -26,13 +26,20 @@ jobs:
           sudo bash -c 'apt update && apt install upx binutils -y';
           rustup component add rust-src --toolchain nightly;
           cargo build --release;
-          strip -s -R .comment -R .gnu.version --strip-unneeded target/x86_64-unknown-linux-musl/release/importenv;
-          upx -9 --best target/x86_64-unknown-linux-musl/release/importenv -o target/x86_64-unknown-linux-musl/release/importenv-upx;
+          mv target/x86_64-unknown-linux-musl/release/importenv importenv-x86_64;
+          echo aarch64;
+          cargo install cross;
+          cross build --release --target aarch64-unknown-linux-musl;
+          mv target/aarch64-unknown-linux-musl/release/importenv importenv-aarch64;
+          echo strip;
+          strip -s -R .comment -R .gnu.version --strip-unneeded importenv-* ;
+          echo upx;
+          ls importenv-*|xargs -I {} upx -9 --best {} -o {}-upx;
 
       - name: Build archlinux package
         uses: countstarlight/arch-makepkg-action@master
         with:
-          scripts: "cp target/x86_64-unknown-linux-musl/release/{importenv,importenv-upx} . && makepkg"
+          scripts: "makepkg -fsCc --noconfirm"
 
       - name: Release
         uses: softprops/action-gh-release@v2

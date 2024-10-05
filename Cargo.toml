@@ -1,27 +1,23 @@
-#Enable unstable feature in Cargo
-cargo-features = ["profile-rustflags"]
-
 [package]
 name = "importenv"
-version = "0.0.6"
+version = "0.0.7"
 edition = "2021"
 readme = "README.md"
-license-file = "LICENSE"
+license = "MIT"
 repository = "https://github.com/VHSgunzo/importenv"
 description = "Launching an executable file with environment variables from a specific process id"
 
 [profile.release]
 lto = true
 panic = "abort"
-opt-level = 3
-strip = true
+opt-level = "z"
+strip = "symbols"
+debug  = false
 codegen-units = 1
-rustflags = ["-C", "target-feature=+crt-static", "-C", "strip=symbols"]
+
+[profile.dev]
+panic = "abort"
+opt-level = 0
 
 [dependencies]
-chrono = "*"
-nix = { version = "*", features = ["process"] }
-
-[unstable]
-build-std = ["std", "panic_abort"]
-build-std-features = ["panic_immediate_abort"]
+nix = { version = "0.29.0", features = ["process"] }
